@@ -12,7 +12,8 @@
     "express": "^4.16.4",
     "html": "^1.0.0",
     "jade": "^1.11.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "web3": "^0.20.7"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
