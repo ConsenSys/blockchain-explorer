@@ -42,7 +42,7 @@ const getBlockByHash = (req, res, next) => {
 
   // const block = mockBlocks.find(b => b.hash === hash);
 
-  web3.eth.getBlock('hash', function(err, block){
+  web3.eth.getBlock(hash, function(err, block){
     if (err) {
       res.status(404).send({
         block: null,
