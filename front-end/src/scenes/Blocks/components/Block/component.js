@@ -5,7 +5,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import TransactionTable from '@Scenes/Overview/components/TransactionTable';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { Link } from 'react-router-dom';
+
+// import TransactionTable from '@Scenes/Overview/components/TransactionTable';
 
 const styles = theme => ({
   paper: { marginTop: '1.5em', minHeight: '200px', position: 'relative' },
@@ -69,7 +76,7 @@ class Block extends Component {
                     </Typography>
                     <Typography component="h3" className={classes.field}>
                       Gas:
-                      <strong>{` ${block.gas} Ether`}</strong>
+                      <strong>{` ${block.gasUsed / 1e18} Ether`}</strong>
                     </Typography>
                     <Typography component="h3" className={classes.field}>
                       Time:{' '}
@@ -78,10 +85,10 @@ class Block extends Component {
                       </strong>
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      Height: {block.height}
+                      Height: {block.number}
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      Mined By: {block.minedBy}
+                      Mined By: {block.miner}
                     </Typography>
                     <Typography component="h3" className={classes.field}>
                       Gas Limit: <strong>{block.gasLimit}</strong>
@@ -93,7 +100,24 @@ class Block extends Component {
                       Transactions
                     </Typography>
                     <div className="transactions__table">
-                      <TransactionTable />
+                      <Table className={classes.table}>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>Hash</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {block.transactions.map(transaction => (
+                            <TableRow key={transaction}>
+                              <TableCell component="th" scope="row">
+                                <Link to={`/transactions/${transaction}`}>
+                                  {transaction}
+                                </Link>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
                     </div>
                   </div>
                 )}

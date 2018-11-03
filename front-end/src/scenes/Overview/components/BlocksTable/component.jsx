@@ -38,7 +38,7 @@ function SimpleTable(props) {
   const { classes, blocks, searchResults, searchText } = props;
 
   let filteredRows = [...blocks];
-  filteredRows = filteredRows.sort((a, b) => a - b).slice(0, 5);
+  filteredRows = filteredRows.slice(-5);
 
   if (searchText && searchResults.blocks.length) {
     filteredRows = searchResults.blocks;
@@ -57,9 +57,11 @@ function SimpleTable(props) {
         {filteredRows.map(row => (
           <TableRow key={row.hash}>
             <TableCell component="th" scope="row">
-              <Link to={`/blocks/${row.hash}`}>{row.height}</Link>
+              {row.number}
             </TableCell>
-            <TableCell>{row.hash}</TableCell>
+            <TableCell>
+              <Link to={`/blocks/${row.hash}`}>{row.hash}</Link>
+            </TableCell>
             <TableCell>
               {' '}
               <Tooltip title={getNewsDateTime(row.timestamp)}>

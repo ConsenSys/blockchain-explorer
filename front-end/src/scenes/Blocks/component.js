@@ -82,7 +82,7 @@ export default class Blocks extends Component {
                       )}
                     {blocks.map((block, index) => (
                       <TableRow key={block.hash}>
-                        <TableCell>{index + 1}</TableCell>
+                        <TableCell>{block.number}</TableCell>
                         <TableCell className="hash__cell">
                           <Link to={`/blocks/${block.hash}`}>{block.hash}</Link>
                         </TableCell>
@@ -91,7 +91,7 @@ export default class Blocks extends Component {
                             .unix(block.timestamp)
                             .format('MMM DD hh:mm:ss')}
                         </TableCell>
-                        <TableCell>{block.numberOfTransactions || 5}</TableCell>
+                        <TableCell>{block.transactions.length}</TableCell>
                       </TableRow>
                     ))}
                     {!blocks.length &&
