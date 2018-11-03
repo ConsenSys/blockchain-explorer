@@ -40,21 +40,24 @@ const getBlockByHash = (req, res, next) => {
     });
   }
 
-  const block = mockBlocks.find(b => b.hash === hash);
+  // const block = mockBlocks.find(b => b.hash === hash);
 
-  if (!block) {
-    res.status(404).send({
-      block: null,
-      error: {
-        code: "NOT_FOUND",
-        message: "Block not found"
-      }
-    });
-  } else {
-    res.send({
-      block
-    });
-  }
+  web3.eth.getBlock('hash', function(err, block){
+    if (err) {
+      res.status(404).send({
+        block: null,
+        error: {
+          code: "NOT_FOUND",
+          message: "Block not found"
+        }
+      });
+    } else {
+      res.send({
+        block
+      });
+    }
+  })
+
 };
 
 module.exports = {
