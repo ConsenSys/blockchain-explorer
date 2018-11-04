@@ -5,7 +5,7 @@ import querystring from 'querystring';
 import store from '@Root/store';
 
 export const client = axios.create({
-  baseURL: process.env.API_BASE,
+  baseURL: window.location.href,
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',

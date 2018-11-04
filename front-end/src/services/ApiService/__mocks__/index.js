@@ -6,7 +6,7 @@ import querystring from 'querystring';
 
 const browserHistory = createHistory();
 export const client = axios.create({
-  baseURL: process.env.API_BASE,
+  baseURL: window.location.href,
   headers: { 'Content-Type': 'application/json' },
   paramsSerializer: params =>
     querystring.stringify({ ...params }, '&', '=', { arrayFormat: 'repeat' }),
