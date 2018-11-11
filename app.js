@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const jayson = require('jayson');
 
 const indexRouter = require("./routes/index");
 const blocksRouter = require("./routes/blocks");
@@ -22,7 +23,19 @@ app.use((req, res, next) => {
   next();
 });
 
+function getEnodeURL(req, res){
+  const client = jayson.client.http(process.env.NODE_URL);
+  client.request('admin_nodeInfo', null, function(err, result){
+    if(err){
+      res.send('Error fetching enodeURL');
+    } else {
+      res.send(res.result.enode)
+    }
+  })
+}
+
 app.use("/", indexRouter);
+app.use("/api/enodeurl", getEnodeURL);
 app.use("/api/blocks", blocksRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/*", (req, res) => {
