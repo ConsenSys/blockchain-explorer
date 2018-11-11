@@ -19,7 +19,7 @@
             oReq.addEventListener("load", function(){
                 document.getElementById("enodeurl").innerHTML = this.responseText;        
             });
-            oReq.open("GET", window.location.href + '/api/enodeurl');
+            oReq.open("GET", (window.location.href + '/api/enodeurl').replace('//', '/'));
             oReq.send();
         }
     </script>
