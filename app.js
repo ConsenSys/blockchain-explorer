@@ -29,7 +29,7 @@ function getEnodeURL(req, res){
     if(err){
       res.send('Error fetching enodeURL');
     } else {
-      res.send(res.result.enode)
+      res.send(result.result.enode.replace('[::]', process.env.NODE_RPC_SERVICE_SERVICE_HOST));
     }
   })
 }
