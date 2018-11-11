@@ -15,7 +15,12 @@
     </div>
     <script type="text/javascript">
         window.onload = function(){
-            //change enodeurl text
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", function(){
+                document.getElementById("enodeurl").innerHTML = this.responseText;        
+            });
+            oReq.open("GET", window.location.href + '/api/enodeurl');
+            oReq.send();
         }
     </script>
 </body>
