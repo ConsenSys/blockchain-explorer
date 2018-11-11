@@ -178,6 +178,10 @@ class Overview extends Component {
             )}
           </Grid>
           <Grid item xs={12} sm={4}>
+            <div>
+              Connecting to <strong>enodeURL</strong>: <span id="enodeurl" />
+            </div>
+            <br />
             <Paper className={classes.paper}>
               <Typography variant="h6">About</Typography>
               <Typography variant="body2" className={classes.aboutText}>
