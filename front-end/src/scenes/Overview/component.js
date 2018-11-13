@@ -150,9 +150,7 @@ class Overview extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12} sm={8} className={classes.tables}>
             <Fragment>
-              <Typography variant="h6">
-                <strong>Node info</strong>
-              </Typography>
+              <Typography variant="h6">Node info</Typography>
               <br />
               <Typography variant="body1">
                 <strong>EnodeURL:</strong>
@@ -162,7 +160,9 @@ class Overview extends Component {
                   enode://a979fb575495b8d6db44f750317d0f4622bf4c2aa3365d6af7c284339968eef29b69ad0dce72a4d8db5ebb4968de0e3bec910127f134779fbcb0cb6d3331163c@52.16.188.185:30303
                 </span>
               </Typography>
-              <Typography variant="body1">JSON RPC Endpoint: </Typography>
+              <Typography variant="body1">
+                <strong>JSON RPC Endpoint:</strong>
+              </Typography>
               <Typography variant="body2">
                 <span id="jsonrpc" />
               </Typography>
