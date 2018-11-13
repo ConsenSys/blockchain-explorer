@@ -149,6 +149,15 @@ class Overview extends Component {
         <p />
         <Grid container spacing={24}>
           <Grid item xs={12} sm={8} className={classes.tables}>
+            <Fragment>
+              <Typography variant="h6">Node info</Typography>
+              <p>
+                <strong>EnodeURL</strong>: <span id="enodeurl"> ... </span>
+                <br />
+                <strong>JSON RPC Endpoint</strong>: <span id="jsonrpc" />
+                <br />
+              </p>
+            </Fragment>
             {!isSearching && (
               <Fragment>
                 <Typography variant="h6">Latest Blocks</Typography>
@@ -178,10 +187,6 @@ class Overview extends Component {
             )}
           </Grid>
           <Grid item xs={12} sm={4}>
-            <div>
-              Connecting to <strong>enodeURL</strong>: <span id="enodeurl" />
-            </div>
-            <br />
             <Paper className={classes.paper}>
               <Typography variant="h6">About</Typography>
               <Typography variant="body2" className={classes.aboutText}>

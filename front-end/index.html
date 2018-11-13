@@ -19,8 +19,9 @@
             oReq.addEventListener("load", function(){
                 document.getElementById("enodeurl").innerHTML = this.responseText;        
             });
-            oReq.open("GET", (window.location.href + '/api/enodeurl').replace('//', '/'));
+            oReq.open("GET", '/api/enodeurl');
             oReq.send();
+            document.getElementById("jsonrpc").innerHTML = 'https://' + window.location.host.replace('blockchain-explorer', 'node-rpc-service');
         }
     </script>
 </body>
