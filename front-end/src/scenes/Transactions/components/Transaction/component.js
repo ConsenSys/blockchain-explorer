@@ -69,7 +69,7 @@ class Transaction extends Component {
                     </Typography>
                     <div className={classes.field}>
                       <Chip
-                        label={`Value: ${transaction.value} Ether`}
+                        label={`Value: ${transaction.value} Wei`}
                         className={classes.chip}
                         color="primary"
                         variant="outlined"
@@ -77,28 +77,29 @@ class Transaction extends Component {
                     </div>
                     <Typography component="h3" className={classes.field}>
                       Value:
-                      <strong>{` ${transaction.value} Ether`}</strong>
+                      <strong>{` ${transaction.value} Wei`}</strong>
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      Time:{' '}
-                      <strong>
-                        {moment.unix(transaction.timestamp).format('LLLL')}
-                      </strong>
+                      From: {transaction.sender}
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      From: {transaction.fromAddress}
+                      To: {transaction.to}
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      To: {transaction.toAddress}
+                      Gas: {transaction.gas}
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      Gas Limit: <strong>{transaction.gasLimit}</strong>
+                      Gas Price: {transaction.gasPrice} Wei
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      Nounce: <strong>{transaction.nounce}</strong>
+                      Nonce: <strong>{transaction.nonce}</strong>
                     </Typography>
                     <Typography component="h3" className={classes.field}>
-                      Data: <strong>{transaction.data}</strong>
+                      Included in Block:
+                      <strong>{transaction.blockNumber}</strong>
+                    </Typography>
+                    <Typography component="h3" className={classes.field}>
+                      Data: <strong>{transaction.input}</strong>
                     </Typography>
                   </div>
                 )}

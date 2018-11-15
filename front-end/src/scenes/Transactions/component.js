@@ -71,7 +71,6 @@ export default class Transactions extends Component {
                   <TableHead>
                     <TableRow>
                       <TableCell>Transaction Hash</TableCell>
-                      <TableCell>Time</TableCell>
                       <TableCell>Value</TableCell>
                     </TableRow>
                   </TableHead>
@@ -91,10 +90,7 @@ export default class Transactions extends Component {
                             {transaction.hash}
                           </Link>
                         </TableCell>
-                        <TableCell>
-                          {moment.unix(transaction.timestamp).format('LLLL')}
-                        </TableCell>
-                        <TableCell>{transaction.value} Eth</TableCell>
+                        <TableCell>{transaction.value} Wei</TableCell>
                       </TableRow>
                     ))}
                     {!transactions.length &&

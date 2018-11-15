@@ -42,7 +42,7 @@ function SimpleTable(props) {
             <TableCell component="th" scope="row">
               <Link to={`/transactions/${row.hash}`}>{row.hash}</Link>
             </TableCell>
-            <TableCell numeric>{row.value} BTC</TableCell>
+            <TableCell numeric>{row.value} Wei</TableCell>
           </TableRow>
         ))}
       </TableBody>
