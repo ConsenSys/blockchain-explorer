@@ -1,6 +1,5 @@
 "use strict";
 
-const mockTransactions = require("../__mocks__/transactions");
 
 const Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.NODE_URL))
@@ -69,21 +68,21 @@ const getTransactionByHash = (req, res, next) => {
     });
   }
 
-  const transaction = mockTransactions.find(t => t.hash === hash);
-
-  if (!transaction) {
-    res.status(404).send({
-      transaction: null,
-      error: {
-        code: "NOT_FOUND",
-        message: "Transaction not found"
-      }
-    });
-  } else {
-    res.send({
-      transaction
-    });
-  }
+  web3.eth.getTransaction(hash, function(err, tx){
+    if (err || !tx) {
+      res.status(404).send({
+        transaction: null,
+        error: {
+          code: "NOT_FOUND",
+          message: "Transaction not found"
+        }
+      });
+    } else {
+      res.send({
+        transaction: tx
+      });
+    }
+  });
 };
 
 
