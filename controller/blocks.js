@@ -2,7 +2,8 @@
 
 const mockBlocks = require("../__mocks__/blocks");
 const Web3 = require('web3');
-const web3 = new Web3(new Web3.providers.HttpProvider(process.env.NODE_URL))
+const getNodeURL = require('../getNodeURL');
+const web3 = new Web3(new Web3.providers.HttpProvider(getNodeURL()))
 
 const getBlocks = (req, res, next) => {
   web3.eth.getBlock("latest", function(err, block){

@@ -7,6 +7,7 @@ const jayson = require('jayson');
 const indexRouter = require("./routes/index");
 const blocksRouter = require("./routes/blocks");
 const transactionsRouter = require("./routes/transactions");
+const getNodeURL = require('./getNodeURL');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 function getEnodeURL(req, res){
-  const client = jayson.client.http(process.env.NODE_URL);
+  const client = jayson.client.http(getNodeURL());
   client.request('admin_nodeInfo', null, function(err, result){
     if(err){
       res.send('Error fetching enodeURL');
