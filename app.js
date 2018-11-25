@@ -30,7 +30,7 @@ function getEnodeURL(req, res){
     if(err){
       res.send('Error fetching enodeURL');
     } else {
-      res.send(result.result.enode.replace('[::]', process.env.NODE_RPC_SERVICE_SERVICE_HOST));
+      res.send(result.result.enode.replace('[::]', getNodeURL().slice(7).slice(0,-5)));
     }
   })
 }
