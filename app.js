@@ -8,6 +8,7 @@ const indexRouter = require("./routes/index");
 const blocksRouter = require("./routes/blocks");
 const transactionsRouter = require("./routes/transactions");
 const getNodeURL = require('./getNodeURL');
+const getDiscoveryURL = require('./getDiscoveryURL');
 
 const app = express();
 
@@ -30,7 +31,7 @@ function getEnodeURL(req, res){
     if(err){
       res.send('Error fetching enodeURL');
     } else {
-      res.send(result.result.enode.replace('[::]', getNodeURL().slice(7).slice(0,-5)));
+      res.send(result.result.enode.replace('[::]', getDiscoveryURL().slice(7).slice(0,-5)));
     }
   })
 }
