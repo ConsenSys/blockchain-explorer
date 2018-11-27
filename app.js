@@ -50,10 +50,12 @@ function fund(req, res){
 }
 
 app.use("/", indexRouter);
-app.use("/api/enodeurl", getEnodeURL);
-app.use("/api/fund", fund);
 app.use("/api/blocks", blocksRouter);
 app.use("/api/transactions", transactionsRouter);
+
+app.get("/api/enodeurl", getEnodeURL);
+app.post("/api/fund", fund);
+
 app.use("/*", (req, res) => {
   res.redirect("/");
 });
