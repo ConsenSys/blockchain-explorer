@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const Web3 = require('web3');
 const jayson = require('jayson');
 
 const indexRouter = require("./routes/index");
@@ -36,8 +37,21 @@ function getEnodeURL(req, res){
   })
 }
 
+function fund(req, res){
+  const web3 = new Web3(new Web3.providers.HttpProvider(getNodeURL()))
+  const address = req.body.address;
+  if(!address || !web3.isAddress(address.trim())){
+    return res.send('Invalid address');
+  } else {
+    web3.eth.sendTransaction({from: web3.eth.accounts[0], value: web3.toWei(1, 'ether'), to: address}, function(err, result){
+      res.send(err ? "Something goes wrong ! Couldn't fund your account." : "Your account has been funded 1 Ether.");
+    });
+  }
+}
+
 app.use("/", indexRouter);
 app.use("/api/enodeurl", getEnodeURL);
+app.use("/api/fund", fund);
 app.use("/api/blocks", blocksRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/*", (req, res) => {
