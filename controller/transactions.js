@@ -18,7 +18,11 @@ function GetTxByHash(hash, cb){
 }
 
 const getTransactions = (req, res, next) => {
-  
+  return res.send({
+    transactions: []
+  });
+
+  //TODO: loop only through the latest 100 block, no more
   function getTxs(blockNumber, transactions){
 
     getBlock(blockNumber, function(block){
