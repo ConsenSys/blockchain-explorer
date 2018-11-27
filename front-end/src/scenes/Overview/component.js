@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import ClearIcon from '@material-ui/icons/ClearOutlined';
 import BlocksTable from './components/BlocksTable';
 import TransactionTable from './components/TransactionTable';
@@ -165,6 +166,22 @@ class Overview extends Component {
                 <span id="jsonrpc" />
               </Typography>
               <br />
+              <form method="post" action="/api/fund">
+                <Typography variant="body1">
+                  <strong>Fund your account:</strong>
+                </Typography>
+                <TextField
+                  required
+                  id="address"
+                  name="address"
+                  label="Account Address"
+                  margin="normal"
+                  variant="outlined"
+                />
+                <Button type="submit" variant="contained" color="primary">
+                  Fund
+                </Button>
+              </form>
               <br />
             </Fragment>
             {!isSearching && (
