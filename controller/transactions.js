@@ -1,9 +1,6 @@
 "use strict";
 
-
-const Web3 = require('web3');
-const getNodeURL = require('../getNodeURL');
-const web3 = new Web3(new Web3.providers.HttpProvider(getNodeURL()))
+const web3 = require('../getWeb3');
 
 function getBlock(n, cb){
   web3.eth.getBlock(n, function(err, block){
