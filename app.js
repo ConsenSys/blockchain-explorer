@@ -13,6 +13,8 @@ const getDiscoveryURL = require('./getDiscoveryURL');
 
 const app = express();
 
+const web3 = new Web3(new Web3.providers.HttpProvider(getNodeURL()));
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,12 +40,11 @@ function getEnodeURL(req, res){
 }
 
 function fund(req, res){
-  const web3 = new Web3(new Web3.providers.HttpProvider(getNodeURL()))
   const address = req.body.address;
   if(!address || !web3.isAddress(address.trim())){
     return res.send('Invalid address');
   } else {
-    web3.eth.sendTransaction({from: web3.eth.accounts[0], value: web3.toWei(1, 'ether'), to: address}, function(err, result){
+    web3.eth.sendTransaction({from: "0x24dac5d8336883f97a068823971d5e7cf1b0ecf6", value: web3.toWei(1, 'ether'), to: address}, function(err, result){
       res.send(err ? "Something goes wrong ! Couldn't fund your account." : "Your account has been funded 1 Ether.");
     });
   }
