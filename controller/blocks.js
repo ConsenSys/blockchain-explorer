@@ -4,6 +4,13 @@ const web3 = require('../getWeb3');
 
 const getBlocks = (req, res, next) => {
   web3.eth.getBlock("latest", function(err, block){
+    if(err || ! block){
+      console.log(err);
+      return res.send({
+        blocks: []
+      });
+    }
+    
     const number = block.number;
     const batch = web3.createBatch();
     const blocks = [];
